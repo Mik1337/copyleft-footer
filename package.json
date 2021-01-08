@@ -1,0 +1,8 @@
+{
+  "name": "copyleft-footer",
+  "version": "0.0.1",
+  "description": "update your copyright footer automatically with javascript",
+  "main": "index.js",
+  "author": "Mik",
+  "license": "MIT"
+}
