@@ -23,3 +23,15 @@ console.log(`© ${getCurrentYear()} Your Company Name`);
 ## License
 
 MIT
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch
+3. Make your changes and commit them
+4. Push to your fork
+5. Create a pull request
+
+## PS
+
+Yes, this is a joke package.
