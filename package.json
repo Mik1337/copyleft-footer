@@ -14,5 +14,15 @@
   ],
   "author": "Mik",
   "license": "MIT",
-  "repository": "git@github.com:Mik1337/copyleft-footer.git"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mik1337/copyleft-footer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mik1337/copyleft-footer/issues"
+  },
+  "homepage": "https://github.com/Mik1337/copyleft-footer#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
