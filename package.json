@@ -2,6 +2,16 @@
   "name": "copyleft-footer",
   "version": "0.0.1",
   "description": "update your copyright footer automatically with javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "copyright",
+    "footer",
+    "year",
+    "date"
+  ],
   "author": "Mik",
   "license": "MIT",
   "repository": "git@github.com:Mik1337/copyleft-footer.git"

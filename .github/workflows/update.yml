@@ -1,6 +1,57 @@
-name: Update
+name: Update Year and Publish
+
 on:
   schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '@yearly'
+    # Run on January 1st at 00:00 UTC
+    - cron: "0 0 1 1 *"
+  workflow_dispatch: # Allow manual trigger
 
+jobs:
+  update-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Update year in test file
+        run: |
+          CURRENT_YEAR=$(date +%Y)
+          sed -i "s/year === [0-9]\{4\}/year === $CURRENT_YEAR/" test.js
+
+      - name: Configure Git
+        run: |
+          git config user.name "Mik's Actions Bot"
+          git config user.email "git@mik.sh"
+
+      - name: Commit changes
+        run: |
+          CURRENT_YEAR=$(date +%Y)
+          git add test.js
+          git commit -m "chore: update year to $CURRENT_YEAR" || echo "No changes to commit"
+
+      - name: Bump version
+        run: |
+          npm version patch -m "chore: bump version for year update"
+
+      - name: Push changes
+        run: |
+          git push
+          git push --tags
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
